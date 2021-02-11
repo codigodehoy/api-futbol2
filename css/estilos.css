@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 30% 1fr;
+  grid-template-areas: "equipos jugadores";
+}
+
+.teams {
+  grid-area: equipos;
+  min-height: 100vh;
+  background: #1c203b;
+}
+
+.teams div {
+  color: #fff;
+  padding: 20px;
+}
+.teams div:hover {
+  background: #1c1736;
+  cursor: pointer;
+}
+.teams div:active {
+  background: #111425;
+}
+
+h2,
+h3 {
+  color: #fff;
+  padding: 1em 0 1.6em 0;
+}
+
+.container-player {
+  background: url("../players.jpg") center;
+  text-align: center;
+}
+.players {
+  background: #000;
+  opacity: 0.8;
+  min-height: 100vh;
+}
+
+.players p {
+  display: inline-block;
+  width: 200px;
+  text-align: left;
+  padding: 2px 20px;
+  background: #000;
+
+  color: #fff;
+}
+@media screen and (max-width: 600px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: "equipos jugadores";
+  }
+}

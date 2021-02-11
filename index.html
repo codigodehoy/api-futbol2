@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="teams">
+        <div class="team"></div>
+        <div class="team"></div>
+        <div class="team"></div>
+        <div class="team"></div>
+      </div>
+      <div class="container-player">
+        <div class="players"></div>
+      </div>
+    </div>
+    <script>
+      let team = document.querySelectorAll(".team");
+      let player = document.querySelector(".players");
+      let teamId = [2616, 2626, 2627, 2621];
+
+      let key =
+        "2c6e53892b4fd81a84173e6497aecc629135c4a2003d6dd8ba8edf90a02f0d3a";
+
+      function players(teamID, getEG) {
+        fetch(
+          `https://allsportsapi.com/api/football/?&met=Teams&teamId=${teamID}&APIkey=${key}`
+        )
+          .then((response) => response.json())
+          .then((equipo) => {
+            // debugger;
+            getEG(equipo.result[0].team_name, equipo.result[0].players);
+          });
+      }
+      let texto;
+      for (let i = 0; i < teamId.length; i++) {
+        players(teamId[i], (team_name, players) => {
+          team[i].innerHTML = team_name;
+          team[i].addEventListener("click", () => {
+            player.innerHTML = "<h2>Jugadores</h2>";
+            for (const item of players) {
+              console.log(players);
+              let p = document.createElement("p");
+              texto = document.createTextNode(item.player_name);
+              p.appendChild(texto);
+              player.appendChild(p);
+            }
+          });
+        });
+      }
+      // https://www.udemy.com/course/node-de-cero-a-experto/learn/lecture/9733798#overview
+    </script>
+  </body>
+</html>
